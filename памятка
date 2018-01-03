@@ -1,0 +1,27 @@
+grep -iRI "ЧтоИскать" ГдеИскать
+adb shell dmesg > dmesg.log
+adb logcat *:E -> logcat.txt
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export ARCH=arm64
+export SUBARCH=arm64
+export CROSS_COMPILE=/home/nik-kst/Android/utility/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+make clean
+make mrproper
+make O=out TARGET_ARCH=arm64 muse6732_c90_m_defconfig
+make -j4 O=out TARGET_ARCH=arm64 | tee build.log
+
+make -j1 O=out TARGET_ARCH=arm64 | tee build.log
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export ARCH=arm
+export SUBARCH=arm
+export CROSS_COMPILE=/home/nik-kst/Android/utility/arm-eabi-4.8/bin/arm-eabi-
+make clean
+make mrproper
+make O=out TARGET_ARCH=arm muse6732_c90_m_defconfig
+make -j4 O=out TARGET_ARCH=arm | tee build.log
+
+make -j1 O=out TARGET_ARCH=arm | tee build.log
